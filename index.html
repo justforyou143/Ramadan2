@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحذير: اختراق عاطفي! ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* المطر بتاع القلوب (Matrix Style) */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid #ff0055;
+            box-shadow: 0 0 30px #ff0055;
+            text-align: center;
+            z-index: 10;
+            max-width: 450px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+        }
+
+        .hack-text {
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        input {
+            background: #111;
+            border: 1px solid #ff0055;
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            width: 80%;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-main {
+            background: linear-gradient(45deg, #ff0055, #ff6600);
+            border: none;
+            padding: 15px 30px;
+            color: #fff;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover { transform: scale(1.1); box-shadow: 0 0 20px #ff0055; }
+
+        .timer-container {
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+        }
+
+        .timer-val { color: #ff0055; font-size: 1.6rem; }
+
+        .hidden { display: none; }
+
+        h1 { margin: 10px 0; font-size: 2rem; }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="login-box" class="card">
+        <div class="hack-text">> Initializing Heart_Hack.exe...</div>
+        <h1>❤️Hayatım</h1>
+        <p>اكتب التاريخ اللي غير كل حياتي😁</p>
+        <input type="text" id="passInput" placeholder="/">
+        <br>
+        <button class="btn-main" onclick="unlock()">اقتحام 🚀</button>
+    </div>
+
+    <div id="main-box" class="card hidden">
+        <h1 style="color: #ff0055;">تم الاختراق بنجاح! 😍</h1>
+        <p>بقالنا مسيطرين على كوكب بعض من:</p>
+        
+        <div class="timer-container">
+            <div id="timer" class="timer-val"></div>
+        </div>
+
+        <h3>تقبلي تفضلي جمبي العمر كله ؟!</h3>
+        
+        <div style="display: flex; justify-content: space-around; gap: 10px;">
+            <button class="btn-main" onclick="celebrate()">طبعاً يا روحي! ❤️</button>
+            <button class="btn-main" onclick="celebrate()">مقدرش أقول لأ 😂</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="Sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const hearts = [];
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        for (let i = 0; i < columns; i++) hearts[i] = 1;
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff0055';
+            ctx.font = fontSize + 'px arial';
+
+            for (let i = 0; i < hearts.length; i++) {
+                const text = '❤️';
+                ctx.fillText(text, i * fontSize, hearts[i] * fontSize);
+                if (hearts[i] * fontSize > canvas.height && Math.random() > 0.975) hearts[i] = 0;
+                hearts[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        function unlock() {
+            const pass = document.getElementById('passInput').value;
+            if (pass === "22/9") {
+                document.getElementById('login-box').classList.add('hidden');
+                document.getElementById('main-box').classList.remove('hidden');
+                document.getElementById('bgMusic').play();
+                startTimer();
+            } else {
+                alert("الباسورد غلط! ركز بدل ما اقتلك 🔪");
+            }
+        }
+
+        function startTimer() {
+            const start = new Date("September 22, 2021 00:00:00").getTime();
+            setInterval(() => {
+                const now = new Date().getTime();
+                const d = now - start;
+                const days = Math.floor(d / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((d % (1000 * 60)) / 1000);
+                document.getElementById('timer').innerHTML = `${days} يوم، ${hours} ساعة، <br> ${mins} دقيقة، و ${secs} ثانية`;
+            }, 1000);
+        }
+
+        function celebrate() {
+            alert(" Ömrümتم حبسك في قلبي للأبد 💍❤️");
+        }
+    </script>
+</body>
+</html>
